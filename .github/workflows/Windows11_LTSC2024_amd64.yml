@@ -45,13 +45,13 @@ jobs:
       shell: cmd
       run: |
         :: (可选)替换预设文件W10UI.ini
-        copy D:\a\UpdateWinISO\UpdateWinISO\myini\W10UI.ini D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.ini /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\myini\W10UI.ini D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.ini /Y
 
         :: 替换W10UI.cmd
-        copy D:\a\UpdateWinISO\UpdateWinISO\mycmd\W10UI.cmd D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.cmd /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\mycmd\W10UI.cmd D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.cmd /Y
 
         :: 切换至Win_ISO_Patching_Scripts根目录 D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
-        cd /d D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
+        cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
 
         :: 开始集成更新
         Start.cmd
@@ -60,7 +60,7 @@ jobs:
     - name: del MasterISO
       shell: cmd
       run: |
-        cd /d D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
+        cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
         dir
         del /F /S /Q zh-cn_windows_11_enterprise_ltsc_2024_x64_dvd_cff9cd2d.iso
         dir
