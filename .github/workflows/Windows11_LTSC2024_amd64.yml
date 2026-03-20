@@ -45,10 +45,10 @@ jobs:
       shell: cmd
       run: |
         :: (可选)替换预设文件W10UI.ini
-        copy D:\a\LTSC_Patching\LTSC_Patching\myini\W10UI.ini D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.ini /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\myini\W10UI.ini D:\a\LTSC_Patching\Win_ISO_Patching_Scripts\W10UI.ini /Y
 
         :: 替换W10UI.cmd
-        copy D:\a\LTSC_Patching\LTSC_Patching\mycmd\W10UI.cmd D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.cmd /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\mycmd\W10UI.cmd D:\a\LTSC_Patching\Win_ISO_Patching_Scripts\W10UI.cmd /Y
 
         :: 切换至Win_ISO_Patching_Scripts根目录 D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
         cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
