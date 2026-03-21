@@ -23,7 +23,7 @@ jobs:
 
     # 检出本仓库
     - name: Checkout repository
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     # 检出Win_ISO_Patching_Scripts仓库
     - name: Checkout repository of Win_ISO_Patching_Scripts
@@ -87,7 +87,7 @@ jobs:
     # 发布镜像
     - name: Release
       if: ${{ github.event.inputs.release == 'true' }}
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v2.6.1
       with:
         tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
         name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
