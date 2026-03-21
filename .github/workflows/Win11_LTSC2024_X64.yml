@@ -8,7 +8,7 @@ env:
   FILE_NAME: Win11_LTSC2024_X64
 
 jobs:
-  Windows11_LTSC2024_amd64:
+  Win11_LTSC2024_X64:
     runs-on: windows-latest
 
     steps:
@@ -62,7 +62,7 @@ jobs:
         del /F /S /Q zh-cn_windows_11_enterprise_ltsc_2024_x64_dvd_cff9cd2d.iso
         dir
 
-    # 打包
+    # 移动并重命名镜像
     - name: Rename
       run: |
         move  ../Win_ISO_Patching_Scripts/*.iso ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
@@ -84,4 +84,4 @@ jobs:
 #      with:
 #        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
 #        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
-#        files: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
+#        files: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z*
