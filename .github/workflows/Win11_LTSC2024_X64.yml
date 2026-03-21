@@ -1,7 +1,15 @@
 name: Win11_LTSC2024_X64
 
-on: workflow_dispatch
-#on: [push, pull_request]
+on: 
+  workflow_dispatch:
+    inputs:
+      release:
+        description: '上传Release'
+        required: true
+        type: choice
+        options:
+          - 'false'
+          - 'true'
 
 env:
   Build_VERSION: '26200.8037'
@@ -74,14 +82,16 @@ jobs:
         path: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
 
     # 打包
-#    - name: Package binaries
-#      run: |
-#        7z a -v1950M ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso -mx=9
+    - name: Package binaries
+      if: ${{ github.event.inputs.release == 'true' }}
+      run: |
+        7z a -v1950M ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso -mx=9
 
     # 发布镜像
-#    - name: Release
-#      uses: softprops/action-gh-release@v2
-#      with:
-#        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
-#        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
-#        files: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z*
+    - name: Release
+      if: ${{ github.event.inputs.release == 'true' }}
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+        files: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z*
