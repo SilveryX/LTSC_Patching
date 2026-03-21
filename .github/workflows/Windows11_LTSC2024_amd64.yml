@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 env:
   Build_VERSION: '26200.8037'
-  FILE_NAME: Windows11_LTSC2024_amd64
+  FILE_NAME: Win11_LTSC2024_X64
 
 jobs:
   Windows11_LTSC2024_amd64:
@@ -69,18 +69,18 @@ jobs:
     - name: Package binaries
       run: |
         #ls     #Directory: D:\a\UpdateWinISO\UpdateWinISO(即仓库目录)
-        7z a ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z ../Win_ISO_Patching_Scripts/*.iso -mx=9
+        move  ../Win_ISO_Patching_Scripts/*.iso ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
 
     # 上传镜像
     - uses: actions/upload-artifact@v6
       with:
-        name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
-        path: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
+        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+        path: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
 
     # 发布镜像
 #    - name: Release
 #      uses: softprops/action-gh-release@v2
 #      with:
-#        tag_name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
+#        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
 #        name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
 #        files: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
