@@ -20,17 +20,14 @@ jobs:
     # 检出Win_ISO_Patching_Scripts仓库
     - name: Checkout repository of Win_ISO_Patching_Scripts
       run: |
-        cd ..  #Directory: D:\a\UpdateWinISO
+        cd ..
         git clone https://github.com/adavak/Win_ISO_Patching_Scripts.git
 
     # 下载镜像
     - name: download ISO
       shell: pwsh
       run: |
-        #ls     #Directory: D:\a\UpdateWinISO\UpdateWinISO(即仓库目录)
-        
-        # 切换至Win_ISO_Patching_Scripts根目录 D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
-        cd ..  #Directory: D:\a\UpdateWinISO
+        cd ..
         cd Win_ISO_Patching_Scripts
         
         # 下载镜像
