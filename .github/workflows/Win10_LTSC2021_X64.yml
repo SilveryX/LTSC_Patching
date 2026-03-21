@@ -5,11 +5,11 @@ on:
     inputs:
       release:
         description: '上传Release'
-        required: false
+        required: true
         type: choice
         options:
-          - 'true'
           - 'false'
+          - 'true'
 #on: [push, pull_request]
 
 env:
