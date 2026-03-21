@@ -1,14 +1,14 @@
-name: Windows10_LTSC2021_amd64
+name: Win10_LTSC2021_X64
 
 on: workflow_dispatch
 #on: [push, pull_request]
 
 env:
   Build_VERSION: '19044.7058'
-  FILE_NAME: Windows10_LTSC2021_amd64
+  FILE_NAME: Win10_LTSC2021_X64
 
 jobs:
-  Windows10_LTSC2021_amd64:
+  Win10_LTSC2021_X64:
     runs-on: windows-latest
 
     steps:
@@ -84,4 +84,4 @@ jobs:
 #      with:
 #        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
 #        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
-#        files: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
+#        files: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z*
