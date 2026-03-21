@@ -45,13 +45,13 @@ jobs:
       shell: cmd
       run: |
         :: (可选)替换预设文件W10UI.ini
-        :: copy D:\a\UpdateWinISO\UpdateWinISO\myini\W10UI.ini D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.ini /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\W10UI.ini D:\a\LTSC_Patching\Win_ISO_Patching_Scripts\W10UI.ini /Y
 
         :: 替换W10UI.cmd
-        copy D:\a\UpdateWinISO\UpdateWinISO\mycmd\W10UI.cmd D:\a\UpdateWinISO\Win_ISO_Patching_Scripts\W10UI.cmd /Y
+        copy D:\a\LTSC_Patching\LTSC_Patching\W10UI.cmd D:\a\LTSC_Patching\Win_ISO_Patching_Scripts\W10UI.cmd /Y
 
         :: 切换至Win_ISO_Patching_Scripts根目录 D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
-        cd /d D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
+        cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
 
         :: 开始集成更新
         Start.cmd
@@ -60,27 +60,31 @@ jobs:
     - name: del MasterISO
       shell: cmd
       run: |
-        cd /d D:\a\UpdateWinISO\Win_ISO_Patching_Scripts
+        cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
         dir
         del /F /S /Q zh-cn_windows_10_enterprise_ltsc_2021_x64_dvd_033b7312.iso
         dir
 
     # 打包
-    - name: Package binaries
+    - name: Rename
       run: |
-        #ls     #Directory: D:\a\UpdateWinISO\UpdateWinISO(即仓库目录)
-        7z a -v1950M ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z ../Win_ISO_Patching_Scripts/*.iso -mx=9
+        move  ../Win_ISO_Patching_Scripts/*.iso ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
 
     # 上传镜像
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
-        name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
-        path: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
+        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+        path: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
+
+    # 打包
+#    - name: Package binaries
+#      run: |
+#        7z a -v1950M ${{env.FILE_NAME}}.${{env.Build_VERSION}}.7z ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso -mx=9
 
     # 发布镜像
-    - name: Release
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
-        release_name: ${{env.FILE_NAME}}-${{env.Build_VERSION}}
-        files: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
+#    - name: Release
+#      uses: softprops/action-gh-release@v2
+#      with:
+#        tag_name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+#        name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
+#        files: ${{env.FILE_NAME}}-${{env.Build_VERSION}}.7z*
