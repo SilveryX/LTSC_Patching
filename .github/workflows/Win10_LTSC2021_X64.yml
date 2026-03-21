@@ -6,7 +6,10 @@ on:
       release:
         description: '上传Release'
         required: false
-        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
 #on: [push, pull_request]
 
 env:
