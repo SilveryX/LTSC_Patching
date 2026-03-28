@@ -12,7 +12,7 @@ on:
           - 'true'
 
 env:
-  Build_VERSION: '26200.8037'
+  Build_VERSION: '26200.8116'
   FILE_NAME: Win11_LTSC2024_X64
 
 jobs:
