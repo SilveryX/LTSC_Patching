@@ -32,7 +32,7 @@ jobs:
         git clone https://github.com/adavak/Win_ISO_Patching_Scripts.git
 
     # 下载镜像
-    - name: download ISO
+    - name: Download ISO
       shell: pwsh
       run: |
         cd ..
@@ -59,7 +59,7 @@ jobs:
         Start.cmd
 
     # 删除母盘
-    - name: del MasterISO
+    - name: Del MasterISO
       shell: cmd
       run: |
         cd /d D:\a\LTSC_Patching\Win_ISO_Patching_Scripts
@@ -73,7 +73,8 @@ jobs:
         move  ../Win_ISO_Patching_Scripts/${{env.Build_VERSION}}*.iso ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
 
     # 上传镜像
-    - uses: actions/upload-artifact@v6
+    - name: Upload artifact
+      uses: actions/upload-artifact@v6
       with:
         name: ${{env.FILE_NAME}}.${{env.Build_VERSION}}
         path: ${{env.FILE_NAME}}.${{env.Build_VERSION}}.iso
